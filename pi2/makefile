@@ -8,7 +8,7 @@ CFLAGS  = -g -Wall -std=c99 -lc -D _BSD_SOURCE -fopenmp
 
 
 # the build target executable:
-TARGET = hello-world
+TARGET = pi
 
 all: $(TARGET)
 
@@ -16,7 +16,7 @@ $(TARGET): $(TARGET).c
 	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c
 
 run: all
-	OMP_NUM_THREADS=4 ./$(TARGET)
+	OMP_NUM_THREADS=6 ./pi
 
 clean:
 	$(RM) $(TARGET)

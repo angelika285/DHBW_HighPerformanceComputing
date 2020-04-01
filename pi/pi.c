@@ -16,9 +16,12 @@ static int throw() {
 
 int main(int argc, char **argv) {
   int globalCount = 0, globalSamples=TRYS;
-
+  
+  #pragma omp parallel for
   for(int i = 0; i < globalSamples; ++i) {
-		globalCount += throw();
+		int wurf = throw();
+		#pragma omp atomic
+		globalCount += wurf;
   }
 
   double pi = 4.0 * (double)globalCount / (double)(globalSamples);
